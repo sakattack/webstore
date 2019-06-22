@@ -48,8 +48,12 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 		return resource;
 	}
 
+	// serve static resources. In this case serve images, on /img/* request, from
+	// the src/main/webapp/resources/images/ (spring MVC copies webapp contents to
+	// the root directory during build)
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		// /** = recursive lookup
 		registry.addResourceHandler("/img/**").addResourceLocations("/resources/images/");
 	}
 
