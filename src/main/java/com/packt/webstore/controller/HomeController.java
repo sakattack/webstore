@@ -9,6 +9,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/")
 public class HomeController {
 
+	// RedirectAttributes are needed in order to pass attributes to the redirect
+	// view. not needed when forward is used instead
 	@RequestMapping
 	public String welcome(Model model, RedirectAttributes redirectAttributes) {
 		model.addAttribute("greeting", "Welcome to Web Store!");
