@@ -15,7 +15,9 @@ public class HomeController {
 	public String welcome(Model model, RedirectAttributes redirectAttributes) {
 		model.addAttribute("greeting", "Welcome to Web Store!");
 		model.addAttribute("tagline", "The one and only amazing web store");
-		redirectAttributes.addFlashAttribute("greeting", "Welcome to Web Store!");
+		redirectAttributes.addFlashAttribute("greeting", "Welcome to Web Store!"); // flash attributes are used when we
+																					// want to pass attributes from this
+																					// request to a redirect
 		redirectAttributes.addFlashAttribute("tagline", "The one and only amazing web store");
 		return "redirect:/welcome/greeting";
 	}
