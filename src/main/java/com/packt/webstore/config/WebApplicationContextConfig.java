@@ -112,7 +112,7 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
-	// add interceptor
+	// add interceptor (in this case it is used as a logging mechanism, using log4j)
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new ProcessingTimeLogInterceptor());
