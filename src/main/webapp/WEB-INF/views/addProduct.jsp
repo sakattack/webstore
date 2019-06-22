@@ -19,7 +19,7 @@
 	</section>
 	<section class="container">
 		<form:form method="POST" modelAttribute="newProduct"
-			class="form-horizontal">
+			class="form-horizontal" enctype="multipart/form-data"><%-- this enctype is needed for file uploading --%>
 			<fieldset>
 				<legend>Add new product</legend>
 				<div class="form-group">
@@ -79,6 +79,14 @@
 						Old
 						<form:radiobutton path="condition" value="Refurbished" />
 						Refurbished
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="productImage">
+						<spring:message code="addProduct.form.productImage.label"/>
+					</label>
+					<div class="col-lg-10">
+						<form:input id="productImage" path="productImage" type="file" class="form:input-large" />
 					</div>
 				</div>
 				<div class="form-group">
