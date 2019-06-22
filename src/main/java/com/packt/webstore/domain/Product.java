@@ -3,8 +3,14 @@ package com.packt.webstore.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@XmlRootElement // identifies the root element of the XML view of the product
 public class Product implements Serializable {
 	private static final long serialVersionUID = 3678107792576131001L;
 	private String productId;
@@ -18,7 +24,10 @@ public class Product implements Serializable {
 	private boolean discontinued;
 	private String condition;
 
+	@JsonIgnore // excludes productImage from json view of the product
 	private MultipartFile productImage;
+
+	@JsonIgnore // excludes productManual from json view of the product
 	private MultipartFile productManual;
 
 	public Product() {
@@ -111,6 +120,7 @@ public class Product implements Serializable {
 		this.condition = condition;
 	}
 
+	@XmlTransient // excludes productImage from xml view of the product
 	public MultipartFile getProductImage() {
 		return productImage;
 	}
@@ -119,6 +129,7 @@ public class Product implements Serializable {
 		this.productImage = productImage;
 	}
 
+	@XmlTransient // excludes productManual from xml view of the product
 	public MultipartFile getProductManual() {
 		return productManual;
 	}
