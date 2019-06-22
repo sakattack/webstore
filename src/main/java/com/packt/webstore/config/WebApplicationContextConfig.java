@@ -56,8 +56,10 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// /** = recursive lookup
 		registry.addResourceHandler("/img/**").addResourceLocations("/resources/images/");
+		registry.addResourceHandler("/pdf/**").addResourceLocations("/resources/pdf/");
 	}
 
+	// enable file uploading
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();

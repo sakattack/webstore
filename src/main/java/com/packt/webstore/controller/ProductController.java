@@ -89,29 +89,42 @@ public class ProductController {
 	@RequestMapping(value = "/products/add", method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("newProduct") Product newProduct, BindingResult result,
 			HttpServletRequest request) {
+
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0)
 			throw new RuntimeException("Attempting to bind disallowed fields: "
 					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
+
+		// copy image and pdf to disk
 		MultipartFile productImage = newProduct.getProductImage();
+		MultipartFile productManual = newProduct.getProductManual();
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		if (!productImage.isEmpty()) {
 			try {
 				productImage.transferTo(
 						new File(rootDirectory + "resources\\images\\" + newProduct.getProductId() + ".jpg"));
-				System.out.println(rootDirectory + "resources\\images\\" + newProduct.getProductId() + ".jpg");
 			} catch (Exception e) {
 				throw new RuntimeException("Product Image saving failed", e);
 			}
 		}
+		if (!productManual.isEmpty()) {
+			try {
+				productManual
+						.transferTo(new File(rootDirectory + "resources\\pdf\\" + newProduct.getProductId() + ".pdf"));
+			} catch (Exception e) {
+				throw new RuntimeException("Product Manual saving failed", e);
+			}
+		}
+
 		productService.addProduct(newProduct);
 		return "redirect:/market/products";
+
 	}
 
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
 		binder.setAllowedFields("productId", "name", "unitPrice", "description", "manufacturer", "category",
-				"unitsInStock", "condition", "productImage");
+				"unitsInStock", "condition", "productImage", "productManual");
 	}
 
 }
