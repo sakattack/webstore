@@ -30,10 +30,15 @@ public class Product implements Serializable {
 	@NotNull(message = "{NotNull.Product.unitPrice.validation}")
 	private BigDecimal unitPrice;
 
+	@Size(min = 1, max = 240, message = "{NotNull.Product.category.validation}")
+	@NotNull(message = "{NotNull.Product.category.validation}")
+	private String category;
+
+	@Min(value = 0, message = "{Min.Product.unitsInStock.validation}")
+	private long unitsInStock;
+
 	private String description;
 	private String manufacturer;
-	private String category;
-	private long unitsInStock;
 	private long unitsInOrder;
 	private boolean discontinued;
 	private String condition;

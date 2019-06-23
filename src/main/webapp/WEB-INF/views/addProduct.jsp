@@ -61,15 +61,15 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="category"><spring:message code="addProduct.form.category.label"/></label>
 					<div class="col-lg-10">
-						<form:input id="category" path="category" type="text"
-							class="form:input-large" />
+						<form:input id="category" path="category" type="text" class="form:input-large" />
+						<form:errors path="category" cssClass="text-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="unitsInStock"><spring:message code="addProduct.form.unitsInStock.label"/></label>
 					<div class="col-lg-10">
-						<form:input id="unitsInStock" path="unitsInStock" type="number"
-							class="form:input-large" />
+						<form:input id="unitsInStock" path="unitsInStock" type="number" class="form:input-large" />
+						<form:errors path="unitsInStock" cssClass="text-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
