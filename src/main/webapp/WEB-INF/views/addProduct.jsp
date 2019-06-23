@@ -27,27 +27,28 @@
 	<section class="container">
 		<form:form method="POST" modelAttribute="newProduct"
 			class="form-horizontal" enctype="multipart/form-data"><%-- this enctype is needed for file uploading --%>
+			<form:errors path="*" cssClass="alert alert-danger" element="div"/> <%-- will show ALL validation error messages --%>
 			<fieldset>
 				<legend>Add new product</legend>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="productId"><spring:message code="addProduct.form.productId.label"/></label>
 					<div class="col-lg-10">
-						<form:input id="productId" path="productId" type="text"
-							class="form:input-large" />
+						<form:input id="productId" path="productId" type="text" class="form:input-large" />
+						<form:errors path="productId" cssClass="text-danger"/> <%-- needed for validation error message --%>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="name"><spring:message code="addProduct.form.name.label"/></label>
 					<div class="col-lg-10">
-						<form:input id="name" path="name" type="text"
-							class="form:input-large" />
+						<form:input id="name" path="name" type="text" class="form:input-large" />
+						<form:errors path="name" cssClass="text-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="unitPrice"><spring:message code="addProduct.form.unitPrice.label"/></label>
 					<div class="col-lg-10">
-						<form:input id="unitPrice" path="unitPrice" type="number"
-							class="form:input-large" />
+						<form:input id="unitPrice" path="unitPrice" type="number" class="form:input-large" />
+						<form:errors path="unitPrice" cssClass="text-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
