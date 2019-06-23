@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.packt.webstore.validator.Category;
 import com.packt.webstore.validator.ProductId;
 
 @XmlRootElement // identifies the root element of the XML view of the product
@@ -34,6 +35,7 @@ public class Product implements Serializable {
 
 	@Size(min = 1, max = 240, message = "{NotNull.Product.category.validation}")
 	@NotNull(message = "{NotNull.Product.category.validation}")
+	@Category
 	private String category;
 
 	@Min(value = 0, message = "{Min.Product.unitsInStock.validation}")
