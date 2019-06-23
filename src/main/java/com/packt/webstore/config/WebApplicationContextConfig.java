@@ -37,6 +37,7 @@ import org.springframework.web.util.UrlPathHelper;
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.interceptor.ProcessingTimeLogInterceptor;
 import com.packt.webstore.interceptor.PromoCodeInterceptor;
+import com.packt.webstore.validator.ProductImageValidator;
 import com.packt.webstore.validator.ProductValidator;
 import com.packt.webstore.validator.UnitsInStockValidator;
 
@@ -178,11 +179,12 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 		return validator();
 	}
 
-	//
+	// bean for the spring validator ProductValidator
 	@Bean
 	public ProductValidator productValidator() {
 		Set<Validator> springValidators = new HashSet();
 		springValidators.add(new UnitsInStockValidator());
+		springValidators.add(new ProductImageValidator());
 		ProductValidator productValidator = new ProductValidator();
 		productValidator.setSpringValidators(springValidators);
 		return productValidator;
