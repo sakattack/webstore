@@ -12,11 +12,13 @@ import org.springframework.validation.Validator;
 
 import com.packt.webstore.domain.Product;
 
+// this class is a common adapter validator. our aim was to combine Bean Validations (JSR-303) and our Spring-based validation
 @Component
 public class ProductValidator implements Validator {
 	@Autowired
 	private javax.validation.Validator beanValidator;
-	private Set<Validator> springValidators;
+	private Set<Validator> springValidators; // initialized in the bean definition of the ProductValidator in
+												// WebApplicationContextConfig
 
 	public ProductValidator() {
 		springValidators = new HashSet<Validator>();
