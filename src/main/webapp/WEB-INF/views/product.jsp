@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Products</title>
@@ -24,26 +25,26 @@
 				<h3>${product.name}</h3>
 				<p>${product.description}</p>
 				<p>
-					<strong>Item Code : </strong><span class="label label warning">${product.productId}
+					<strong><spring:message code="addProduct.form.productId.label"/></strong> : <span class="label label warning">${product.productId}
 					</span>
 				</p>
 				<p>
-					<strong>manufacturer</strong> : ${product.manufacturer}
+					<strong><spring:message code="addProduct.form.manufacturer.label"/></strong> : ${product.manufacturer}
 				</p>
 				<p>
-					<strong>category</strong> : ${product.category}
+					<strong><spring:message code="addProduct.form.category.label"/></strong> : ${product.category}
 				</p>
 				<p>
-					<strong>Available units in stock </strong> :
+					<strong><spring:message code="addProduct.form.unitsInStock.label"/></strong> :
 					${product.unitsInStock}
 				</p>
-				<h4>${product.unitPrice}USD</h4>
+				<h4>${product.unitPrice}<spring:message code="currency"/></h4>
 				<p>
 					<a href="<spring:url value="/market/products" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> back
+						<span class="glyphicon-hand-left glyphicon"></span> <spring:message code="buttons.back"/>
 					</a>
 					<a href="#" class="btn btn-warning btn-large"> <span
-						class="glyphicon-shopping-cart glyphicon"> </span> Order Now
+						class="glyphicon-shopping-cart glyphicon"> </span> <spring:message code="buttons.orderNow"/>
 					</a>
 				</p>
 			</div>

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page contentType="text/html; charset=UTF-8" %> <%-- UTF-8 here did work at fixing the Greek characters problem (hard coded ones. The ones coming from messages_gr.properties have their own solution in WebApplicationContextConfig) --%>
+<%@ page contentType="text/html; charset=UTF-8" %> <%-- UTF-8 here did work at fixing the Greek characters problem (hard coded ones. The ones coming from messages_gr.properties have an extra step in their solution in WebApplicationContextConfig) --%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <%-- UTF-8 here didn't work --%>
