@@ -28,6 +28,7 @@ import com.packt.webstore.domain.Product;
 import com.packt.webstore.exception.NoProductsFoundUnderCategoryException;
 import com.packt.webstore.exception.ProductNotFoundException;
 import com.packt.webstore.service.ProductService;
+import com.packt.webstore.validator.UnitsInStockValidator;
 
 @Controller
 @RequestMapping("/market")
@@ -35,6 +36,11 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+
+	// custom spring validator that needs to be associated with WebDataBinder (
+	// initialiseBinder method )
+	@Autowired
+	private UnitsInStockValidator unitsInStockValidator;
 
 	@RequestMapping("/products")
 	public String list(Model model) {
@@ -136,6 +142,12 @@ public class ProductController {
 	// allowed fields for the new product form returned fields
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
+
+		// adding custom spring validator (this will disable any previous JSR-303 Bean
+		// Validation)
+		binder.setValidator(unitsInStockValidator);
+
+		// setting allowed fields
 		binder.setAllowedFields("productId", "name", "unitPrice", "description", "manufacturer", "category",
 				"unitsInStock", "condition", "productImage", "productManual", "language");
 	}
