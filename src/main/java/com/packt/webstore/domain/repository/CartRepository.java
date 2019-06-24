@@ -15,6 +15,4 @@ public interface CartRepository {
 	void addItem(String cartId, String productId);
 
 	void removeItem(String cartId, String productId);
-
-	void clearCart(String cartId);
 }
