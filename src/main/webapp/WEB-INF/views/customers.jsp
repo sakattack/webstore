@@ -21,9 +21,9 @@
 				<div class="col-sm-6 col-md-3">
 					<div class="thumbnail">
 						<div class="caption">
-							<h3>${customer.name} - ${customer.customerId}</h3>
-							<p>${customer.billingAddress}</p>
-							<p>${customer.phoneNumber}</p>
+							<h3>${customer.name}</h3>
+							<p>${customer.address}</p>
+							<p>${customer.noOfOrdersMade}</p>
 						</div>
 					</div>
 				</div>

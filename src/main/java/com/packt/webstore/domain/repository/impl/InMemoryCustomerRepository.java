@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import com.packt.webstore.domain.Customer;
 import com.packt.webstore.domain.repository.CustomerRepository;
-import com.packt.webstore.service.AddressService;
 
 @Repository
 public class InMemoryCustomerRepository implements CustomerRepository {
@@ -22,16 +21,12 @@ public class InMemoryCustomerRepository implements CustomerRepository {
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
 	private static final class CustomerMapper implements RowMapper<Customer> {
-
-		@Autowired
-		private AddressService AddressService;
-
 		public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Customer customer = new Customer();
-			customer.setCustomerId(rs.getLong("ID"));
+			customer.setCustomerId(rs.getString("ID"));
 			customer.setName(rs.getString("NAME"));
-			customer.setBillingAddress(AddressService.read(rs.getInt("BILLING_ADDRESS_ID")));
-			customer.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+			customer.setAddress(rs.getString("ADDRESS"));
+			customer.setNoOfOrdersMade(rs.getInt("NO_OF_ORDERS"));
 			return customer;
 		}
 	}
@@ -50,8 +45,8 @@ public class InMemoryCustomerRepository implements CustomerRepository {
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", customer.getCustomerId());
 		params.put("name", customer.getName());
-		params.put("billingAddress", customer.getBillingAddress());
-		params.put("phoneNumber", customer.getPhoneNumber());
+		params.put("address", customer.getAddress());
+		params.put("orders", customer.getNoOfOrdersMade());
 		jdbcTemplate.update(SQL, params);
 	}
 
