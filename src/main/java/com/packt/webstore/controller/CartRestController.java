@@ -48,12 +48,12 @@ public class CartRestController {
 	@RequestMapping(value = "/add/{productId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void addItem(@PathVariable String productId, HttpSession session) {
-		cartService.addItem(session.getId(), productId);
+		cartService.addItem(session.getId(), productId);// the id of the cart is the session id
 	}
 
 	@RequestMapping(value = "/remove/{productId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void removeItem(@PathVariable String productId, HttpSession session) {
-		cartService.removeItem(session.getId(), productId);
+		cartService.removeItem(session.getId(), productId);// the id of the cart is the session id
 	}
 }
