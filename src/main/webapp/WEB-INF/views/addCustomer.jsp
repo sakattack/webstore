@@ -38,14 +38,14 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="address">Address</label>
 					<div class="col-lg-10">
-						<form:input id="address" path="address" type="text"
+						<form:input id="billingAddress" path="billingAddress" type="text"
 							class="form:input-large" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for="noOfOrdersMade">Orders made</label>
+					<label class="control-label col-lg-2 col-lg-2" for="noOfOrdersMade">Phone Number</label>
 					<div class="col-lg-10">
-						<form:input id="noOfOrdersMade" path="noOfOrdersMade" type="number"
+						<form:input id="phoneNumber" path="phoneNumber" type="number"
 							class="form:input-large" />
 					</div>
 				</div>
