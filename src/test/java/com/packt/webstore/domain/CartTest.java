@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+// simple unit test class with JUnit
 public class CartTest {
 
 	private Cart cart;
