@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache
+Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="baseLayout"
+		template="/WEB-INF/layouts/template/baseLayout.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		<put-attribute name="heading" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/layouts/template/navigation.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/layouts/template/footer.jsp" />
+	</definition>
+	<definition name="welcome" extends="baseLayout">
+		<put-attribute name="title" value="Products" />
+		<put-attribute name="heading" value="Products" />
+		<put-attribute name="tagline"
+			value="All the available products in our store" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/products.jsp" />
+	</definition>
+	<definition name="products" extends="baseLayout">
+		<put-attribute name="title" value="Products" />
+		<put-attribute name="heading" value="Products" />
+		<put-attribute name="tagline"
+			value="All the available products in our store" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/products.jsp" />
+	</definition>
+	<definition name="product" extends="baseLayout">
+		<put-attribute name="title" value="Product" />
+		<put-attribute name="heading" value="Product" />
+		<put-attribute name="tagline" value="Details" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/product.jsp" />
+	</definition>
+	<definition name="addProduct" extends="baseLayout">
+		<put-attribute name="title" value="Products" />
+		<put-attribute name="heading" value="Products" />
+		<put-attribute name="tagline" value="Add Product" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/addProduct.jsp" />
+	</definition>
+	<definition name="login" extends="baseLayout">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="heading"
+			value="Welcome to Web Store!" />
+		<put-attribute name="tagline"
+			value="The one and only amazing web store" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/login.jsp" />
+	</definition>
+	<definition name="cart" extends="baseLayout">
+		<put-attribute name="title" value="Shopping Cart" />
+		<put-attribute name="heading" value="Cart" />
+		<put-attribute name="tagline"
+			value="All the selected products in your cart" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/cart.jsp" />
+	</definition>
+	
+	<definition name="productNotFound" extends="baseLayout">
+		<put-attribute name="title" value="Product Not Found" />
+		<put-attribute name="heading" value="Product Not Found" />
+		<put-attribute name="tagline"
+			value="No Products were found matching your criteria" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/productNotFound.jsp" />
+	</definition>
+	
+	<definition name="invalidPromoCode" extends="baseLayout">
+		<put-attribute name="title" value="Invalid Promo Code" />
+		<put-attribute name="heading" value="Invalid Promo Code" />
+		<put-attribute name="tagline"
+			value="The promo code you supplied does not exist" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/invalidPromoCode.jsp" />
+	</definition>
+	
+	<definition name="checkOutCancelled" extends="baseLayout">
+		<put-attribute name="title" value="check out cancelled" />
+		<put-attribute name="heading" value="check out cancelled" />
+		<put-attribute name="tagline"
+			value="Your Check out process cancelled! you may continue shopping.." />
+		<put-attribute name="content"
+			value="/WEB-INF/flows/checkout/checkOutCancelled.jsp" />
+	</definition>
+	
+	<definition name="collectCustomerInfo" extends="baseLayout">
+		<put-attribute name="title" value="Customer" />
+		<put-attribute name="heading" value="Customer" />
+		<put-attribute name="tagline"
+			value="Customer details" />
+		<put-attribute name="content"
+			value="/WEB-INF/flows/checkout/collectCustomerInfo.jsp" />
+	</definition>
+	
+	<definition name="collectShippingDetail" extends="baseLayout">
+		<put-attribute name="title" value="Customer" />
+		<put-attribute name="heading" value="Shipping" />
+		<put-attribute name="tagline"
+			value="Shipping details" />
+		<put-attribute name="content"
+			value="/WEB-INF/flows/checkout/collectShippingDetail.jsp" />
+	</definition>
+	
+	<definition name="invalidCartWarning" extends="baseLayout">
+		<put-attribute name="title" value="Invalid cart" />
+		<put-attribute name="heading" value="Invalid cart" />
+		<put-attribute name="tagline"
+			value="Empty Cart" />
+		<put-attribute name="content"
+			value="/WEB-INF/flows/checkout/invalidCartWarning.jsp" />
+	</definition>
+	
+	<definition name="orderConfirmation" extends="baseLayout">
+		<put-attribute name="title" value="Order" />
+		<put-attribute name="heading" value="Order" />
+		<put-attribute name="tagline"
+			value="Order Confirmation" />
+		<put-attribute name="content"
+			value="/WEB-INF/flows/checkout/orderConfirmation.jsp" />
+	</definition>
+	
+	<definition name="returningCustomerId" extends="baseLayout">
+		<put-attribute name="title" value="Customer" />
+		<put-attribute name="heading" value="Customer" />
+		<put-attribute name="tagline"
+			value="Returning customer?" />
+		<put-attribute name="content"
+			value="/WEB-INF/flows/checkout/returningCustomerId.jsp" />
+	</definition>
+
+	<definition name="thankCustomer" extends="baseLayout">
+		<put-attribute name="title" value="Thank you" />
+		<put-attribute name="heading" value="Thank you" />
+		<put-attribute name="tagline"
+			value="Thanks for the order" />
+		<put-attribute name="content"
+			value="/WEB-INF/flows/checkout/thankCustomer.jsp" />
+	</definition>
+	
+</tiles-definitions>

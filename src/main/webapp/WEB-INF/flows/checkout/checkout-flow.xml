@@ -13,8 +13,7 @@
 		<transition to="returningCustomerId" />
 	</action-state>
 	
-	<view-state id="returningCustomerId"
-		view="returningCustomerId.jsp" model="order">
+	<view-state id="returningCustomerId" model="order">
 		<transition on="checkCustomerIdExists"
 			to="checkCustomerExist" />
 	</view-state>
@@ -31,8 +30,7 @@
 		<transition to="collectShippingDetail" />
 	</action-state>
 	
-	<view-state id="collectCustomerInfo"
-		view="collectCustomerInfo.jsp" model="order"><!-- That Model object gets bound to the View via the modelAttribute attribute of the <form:form> tag in collectCustomerInfo.jsp -->
+	<view-state id="collectCustomerInfo" model="order"><!-- That Model object gets bound to the View via the modelAttribute attribute of the <form:form> tag in collectCustomerInfo.jsp -->
 		<transition on="customerInfoCollected"
 			to="storeCustomer" />
 	</view-state>
@@ -67,7 +65,7 @@
 		<transition to="endState" />
 	</view-state>
 	<end-state id="endState" />
-	<end-state id="cancelCheckout" view="checkOutCancelled.jsp" />
+	<end-state id="cancelCheckout" view="checkOutCancelled" />
 	<global-transitions>
 		<transition on="cancel" to="cancelCheckout" />
 	</global-transitions>

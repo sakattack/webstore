@@ -2,28 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html; charset=UTF-8" %> <%-- UTF-8 here did work at fixing the Greek characters problem (hard coded ones. The ones coming from messages_gr.properties have an extra step in their solution in WebApplicationContextConfig) --%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <%-- UTF-8 here didn't work --%>
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Products</title>
-</head>
-<body>
-	<section>
-		<div class="pull-right" style="padding-right:50px">
-			<a href="?language=en" >English</a>|<a href="?language=gr" >Ελληνικά</a>
-			<a href="<c:url value="/logout" />">Logout</a>
-		</div>
-	</section>
-	<section>
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Products</h1>
-				<p>Add products</p>
-			</div>
-		</div>
-	</section>
+
 	<section class="container">
 		<form:form method="POST" modelAttribute="newProduct"
 			class="form-horizontal" enctype="multipart/form-data"><%-- this enctype is needed for file uploading --%>
@@ -114,5 +93,3 @@
 			</fieldset>
 		</form:form>
 	</section>
-</body>
-</html>
