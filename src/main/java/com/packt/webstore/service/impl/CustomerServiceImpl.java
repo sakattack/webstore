@@ -14,8 +14,8 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerRepository customerRepository;
 
 	@Override
-	public void saveCustomer(Customer customer) {
-		customerRepository.saveCustomer(customer);
+	public long saveCustomer(Customer customer) {
+		return customerRepository.saveCustomer(customer);
 	}
 
 	@Override

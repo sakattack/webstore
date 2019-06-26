@@ -19,13 +19,18 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
-	public void addAddress(Address address) {
-		addressRepository.addAddress(address);
+	public long addAddress(Address address) {
+		return addressRepository.addAddress(address);
 	}
 
 	@Override
 	public void updateAddress(Address address) {
 		addressRepository.updateAddress(address);
+	}
+
+	@Override
+	public Address createAddress() {
+		return addressRepository.createAddress();
 	}
 
 }

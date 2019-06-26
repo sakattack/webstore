@@ -11,10 +11,10 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.packt.webstore.domain.Address;
-import com.packt.webstore.domain.Customer;
 import com.packt.webstore.domain.Order;
 import com.packt.webstore.domain.ShippingDetail;
+import com.packt.webstore.domain.repository.AddressRepository;
+import com.packt.webstore.domain.repository.CustomerRepository;
 import com.packt.webstore.domain.repository.OrderRepository;
 import com.packt.webstore.service.CartService;
 
@@ -24,10 +24,14 @@ public class InMemoryOrderRepository implements OrderRepository {
 	private NamedParameterJdbcTemplate jdbcTempleate;
 	@Autowired
 	private CartService CartService;
+	@Autowired
+	private AddressRepository addressRepository;
+	@Autowired
+	private CustomerRepository customerRepository;
 
 	@Override
 	public long saveOrder(Order order) {
-		Long customerId = saveCustomer(order.getCustomer());
+		Long customerId = customerRepository.saveCustomer(order.getCustomer());
 		Long shippingDetailId = saveShippingDetail(order.getShippingDetail());
 		order.getCustomer().setCustomerId(customerId);
 		order.getShippingDetail().setId(shippingDetailId);
@@ -37,40 +41,12 @@ public class InMemoryOrderRepository implements OrderRepository {
 	}
 
 	private long saveShippingDetail(ShippingDetail shippingDetail) {
-		long addressId = saveAddress(shippingDetail.getShippingAddress());
+		long addressId = addressRepository.addAddress(shippingDetail.getShippingAddress());
 		String SQL = "INSERT INTO SHIPPING_DETAIL(NAME,SHIPPING_DATE,SHIPPING_ADDRESS_ID) VALUES (:name, :shippingDate, :addressId)";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", shippingDetail.getName());
 		params.put("shippingDate", shippingDetail.getShippingDate());
 		params.put("addressId", addressId);
-		SqlParameterSource paramSource = new MapSqlParameterSource(params);
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		jdbcTempleate.update(SQL, paramSource, keyHolder, new String[] { "ID" });
-		return keyHolder.getKey().longValue();
-	}
-
-	private long saveCustomer(Customer customer) {
-		long addressId = saveAddress(customer.getBillingAddress());
-		String SQL = "INSERT INTO CUSTOMER(NAME,PHONE_NUMBER,BILLING_ADDRESS_ID) VALUES (:name, :phoneNumber, :addressId)";
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("name", customer.getName());
-		params.put("phoneNumber", customer.getPhoneNumber());
-		params.put("addressId", addressId);
-		SqlParameterSource paramSource = new MapSqlParameterSource(params);
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		jdbcTempleate.update(SQL, paramSource, keyHolder, new String[] { "ID" });
-		return keyHolder.getKey().longValue();
-	}
-
-	private long saveAddress(Address address) {
-		String SQL = "INSERT INTO ADDRESS(DOOR_NO,STREET_NAME,AREA_NAME,STATE,COUNTRY,ZIP) VALUES (:doorNo, :streetName, :areaName, :state, :country, :zip)";
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("doorNo", address.getDoorNo());
-		params.put("streetName", address.getStreetName());
-		params.put("areaName", address.getAreaName());
-		params.put("state", address.getState());
-		params.put("country", address.getCountry());
-		params.put("zip", address.getZipCode());
 		SqlParameterSource paramSource = new MapSqlParameterSource(params);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTempleate.update(SQL, paramSource, keyHolder, new String[] { "ID" });

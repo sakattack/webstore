@@ -6,8 +6,10 @@ public interface AddressService {
 
 	Address getAddressById(String id);
 
-	void addAddress(Address address);
+	long addAddress(Address address);
 
 	void updateAddress(Address address);
+
+	Address createAddress();
 
 }

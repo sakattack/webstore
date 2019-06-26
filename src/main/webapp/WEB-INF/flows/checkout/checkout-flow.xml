@@ -10,19 +10,46 @@
 			result="order.cart" />
 		<transition to="invalidCartWarning"
 			on-exception="com.packt.webstore.exception.InvalidCartException" />
-		<transition to="collectCustomerInfo" />
+		<transition to="returningCustomerId" />
 	</action-state>
+	
+	<view-state id="returningCustomerId"
+		view="returningCustomerId.jsp" model="order">
+		<transition on="checkCustomerIdExists"
+			to="checkCustomerExist" />
+	</view-state>
+	
+	<decision-state id="checkCustomerExist">
+		<if test="customerServiceImpl.isCustomerExist(order.customer.customerId)"
+		then="updateThisCustomer"
+		else="collectCustomerInfo"/>
+	</decision-state>
+	
+	<action-state id="updateThisCustomer">
+		<evaluate expression="customerServiceImpl.getCustomer(order.customer.customerId)"
+			result="order.customer" />
+		<transition to="collectShippingDetail" />
+	</action-state>
+	
 	<view-state id="collectCustomerInfo"
 		view="collectCustomerInfo.jsp" model="order"><!-- That Model object gets bound to the View via the modelAttribute attribute of the <form:form> tag in collectCustomerInfo.jsp -->
 		<transition on="customerInfoCollected"
-			to="collectShippingDetail" />
+			to="storeCustomer" />
 	</view-state>
+	
+	<action-state id="storeCustomer">
+		<evaluate expression="customerServiceImpl.saveCustomer(order.customer)"
+			result="order.customer.customerId" />
+		<transition to="collectShippingDetail" />
+	</action-state>
+	
 	<view-state id="collectShippingDetail" model="order">
 		<transition on="shippingDetailCollected"
 			to="orderConfirmation" />
 		<transition on="backToCollectCustomerInfo"
 			to="collectCustomerInfo" />
 	</view-state>
+	
 	<view-state id="orderConfirmation">
 		<transition on="orderConfirmed" to="processOrder" />
 		<transition on="backToCollectShippingDetail"

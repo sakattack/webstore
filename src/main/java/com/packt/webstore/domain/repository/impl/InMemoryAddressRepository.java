@@ -8,7 +8,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.packt.webstore.domain.Address;
@@ -50,19 +54,19 @@ public class InMemoryAddressRepository implements AddressRepository {
 	}
 
 	@Override
-	public void addAddress(Address address) {
-		String SQL = "INSERT INTO ADDRESS (ID, DOOR_NO, STREET_NAME, AREA_NAME, STATE, COUNTRY, ZIP) VALUES (:id, :door, :street, :area, :state, :country, :zip)";
-
-		Map<String, Object> params = new HashMap<>();
-		params.put("id", address.getId());
-		params.put("door", address.getDoorNo());
-		params.put("street", address.getStreetName());
-		params.put("area", address.getAreaName());
+	public long addAddress(Address address) {
+		String SQL = "INSERT INTO ADDRESS(DOOR_NO,STREET_NAME,AREA_NAME,STATE,COUNTRY,ZIP) VALUES (:doorNo, :streetName, :areaName, :state, :country, :zip)";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("doorNo", address.getDoorNo());
+		params.put("streetName", address.getStreetName());
+		params.put("areaName", address.getAreaName());
 		params.put("state", address.getState());
 		params.put("country", address.getCountry());
 		params.put("zip", address.getZipCode());
-
-		jdbcTemplate.update(SQL, params);
+		SqlParameterSource paramSource = new MapSqlParameterSource(params);
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(SQL, paramSource, keyHolder, new String[] { "ID" });
+		return keyHolder.getKey().longValue();
 	}
 
 	@Override
@@ -79,6 +83,11 @@ public class InMemoryAddressRepository implements AddressRepository {
 		params.put("zip", address.getZipCode());
 
 		jdbcTemplate.update(SQL, params);
+	}
+
+	@Override
+	public Address createAddress() {
+		return new Address();
 	}
 
 }

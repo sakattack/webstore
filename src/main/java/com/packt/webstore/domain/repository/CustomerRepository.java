@@ -4,7 +4,7 @@ import com.packt.webstore.domain.Customer;
 
 public interface CustomerRepository {
 
-	void saveCustomer(Customer customer);
+	long saveCustomer(Customer customer);
 
 	Customer getCustomer(String customerId);
 

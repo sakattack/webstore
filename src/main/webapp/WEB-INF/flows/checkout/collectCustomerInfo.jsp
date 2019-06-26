@@ -39,7 +39,7 @@
 					<label class="control-label col-lg-2" for="streetName">Street
 						Name</label>
 					<div class="col-lg-10">
-						<form:input id="streetName" path="billingAddress.streetName."
+						<form:input id="streetName" path="billingAddress.streetName"
 							type="text" class="form:input-large" />
 					</div>
 				</div>
