@@ -166,6 +166,12 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 	}
 
 	// enable JSR-303 validation and set message source
+	// Java Bean Validation (JSR-303) is a Java specification that allows us to
+	// express validation
+	// constraints on objects via annotations. It allows the APIs to validate and
+	// report violations.
+	// Hibernate Validator is the reference implementation of the Bean Validation
+	// specification.
 	@Bean(name = "validator")
 	public LocalValidatorFactoryBean validator() {
 		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
