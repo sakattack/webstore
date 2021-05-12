@@ -113,7 +113,7 @@ spring-oxm.jar -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>4.1.1.RELEASE</version>
+			<version>5.2.10.RELEASE</version>
 		</dependency>
 		
 		<!-- needed for JSR-303 validation -->
